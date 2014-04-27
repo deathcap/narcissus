@@ -1,11 +1,18 @@
-function fill(s) {
-  var req = new XMLHttpRequest();  
-  req.open("GET", s, false);
-  req.send(null);  
-  if ((req.status == 200) || (req.status == 0)) {
-    var textarea = document.getElementById("js");
-    textarea.value = req.responseText;
-  }
+function functionToStringBody(f) {
+  var s = f.toString();
+  var lines = f.toString().split("\n");
+  lines[0] = '';
+  lines[lines.length - 1] = "";
+
+  return lines.join("\n");
+}
+
+function fill(name) {
+  var s = functionToStringBody(examples[name]);
+
+  s = s.replace("function ()", "")
+  var textarea = document.getElementById("js");
+  textarea.value = s;
 }
 
 function gettypes() {
